@@ -421,17 +421,17 @@ class MainWindow(QMainWindow):
    
     def cvt_cv_qt(self, Image):
         offset = 5
-        rgb_img = cv2.cvtColor(src=Image,code=cv2.COLOR_BGR2RGB)
+        rgb_Capture = cv2.cvtColor(src=Image,code=cv2.COLOR_BGR2RGB)
         if self.ckb_roi.isChecked():
-            rgb_img = cv2.rectangle(rgb_img,
+            rgb_Capture = cv2.rectangle(rgb_Capture,
                                          pt1=(self.roi_x,self.roi_y),
                                          pt2=(self.roi_w,self.roi_h),
                                          color=(0,255,255),
                                          thickness=2)
 
-        h,w,ch = rgb_img.shape
+        h,w,ch = rgb_Capture.shape
         bytes_per_line = ch * w
-        cvt2QtFormat = QImage(rgb_img.data, w, h, bytes_per_line, QImage.Format_RGB888)
+        cvt2QtFormat = QImage(rgb_Capture.data, w, h, bytes_per_line, QImage.Format_RGB888)
         pixmap = QPixmap.fromImage(cvt2QtFormat)
         if self.track_obj1.isChecked() or self.track_obj2.isChecked() or self.track_obj3.isChecked():
             pixmap = QPixmap.fromImage(cvt2QtFormat)
