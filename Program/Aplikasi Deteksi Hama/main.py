@@ -1,13 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-
-# Guide: open conda tensorflow_cpu : cd to the folder save file.ui: comment: pyuic5 -x test.ui -o test.py
-# convert ipynb to py ### comment: ipython nbconvert --to script "PyQt5_v10.ipynb"
-# convert py to exe:
-# # comment in conda with direction from file.py: pip install pyinstaller
-                                                # pyinstaller PyQt5_v10.py
-
+# Abimanyu Sri Setyo
+# 195150300111005
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QTextEdit, QDialog
 from PyQt5 import uic
@@ -32,7 +24,6 @@ buffer = 32
 
 greenLower = (29, 86, 6)
 greenUpper = (64, 255, 255)
-#greenUpper = (225, 100, 70)
 
 pts = deque(maxlen=buffer)
 counter = 0
@@ -43,66 +34,44 @@ time.sleep(2.0)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
+        # Window
         Dialog.setObjectName("Dialog")
-        Dialog.resize(815, 538)
+        Dialog.resize(700, 500)
+        # Box Image
         self.imgLabel_1 = QtWidgets.QLabel(Dialog)
-        self.imgLabel_1.setGeometry(QtCore.QRect(150, 80, 471, 441))
+        self.imgLabel_1.setGeometry(QtCore.QRect(150, 10, 540, 480))
         self.imgLabel_1.setAutoFillBackground(False)
         self.imgLabel_1.setFrameShape(QtWidgets.QFrame.Box)
         self.imgLabel_1.setFrameShadow(QtWidgets.QFrame.Raised)
         self.imgLabel_1.setLineWidth(2)
         self.imgLabel_1.setScaledContents(True)
         self.imgLabel_1.setObjectName("imgLabel_1")
+        # Run Button
         self.SHOW = QtWidgets.QPushButton(Dialog)
-        self.SHOW.setGeometry(QtCore.QRect(10, 80, 71, 31))
-        self.SHOW.setObjectName("RUN")
+        self.SHOW.setGeometry(QtCore.QRect(10, 10, 130, 30))
+        self.SHOW.setObjectName("SHOW")
+        # Save Log Button
         self.CAPTURE = QtWidgets.QPushButton(Dialog)
-        self.CAPTURE.setGeometry(QtCore.QRect(10, 120, 131, 51))
+        self.CAPTURE.setGeometry(QtCore.QRect(10, 420, 130, 30))
         self.CAPTURE.setObjectName("CAPTURE")
-        self.TEXT = QtWidgets.QTextBrowser(Dialog)
-        self.TEXT.setGeometry(QtCore.QRect(10, 10, 256, 61))
-        self.TEXT.setObjectName("TEXT")
-        self.imgLabel_2 = QtWidgets.QLabel(Dialog)
-        self.imgLabel_2.setGeometry(QtCore.QRect(630, 80, 151, 131))
-        self.imgLabel_2.setFrameShape(QtWidgets.QFrame.Box)
-        self.imgLabel_2.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.imgLabel_2.setLineWidth(2)
-        self.imgLabel_2.setScaledContents(True)
-        self.imgLabel_2.setObjectName("imgLabel_2")
-        self.imgLabel_3 = QtWidgets.QLabel(Dialog)
-        self.imgLabel_3.setGeometry(QtCore.QRect(630, 240, 151, 131))
-        self.imgLabel_3.setFrameShape(QtWidgets.QFrame.Box)
-        self.imgLabel_3.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.imgLabel_3.setLineWidth(2)
-        self.imgLabel_3.setScaledContents(True)
-        self.imgLabel_3.setObjectName("imgLabel_3")
-        self.imgLabel_4 = QtWidgets.QLabel(Dialog)
-        self.imgLabel_4.setGeometry(QtCore.QRect(630, 400, 151, 121))
-        self.imgLabel_4.setFrameShape(QtWidgets.QFrame.Box)
-        self.imgLabel_4.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.imgLabel_4.setLineWidth(2)
-        self.imgLabel_4.setScaledContents(True)
-        self.imgLabel_4.setObjectName("imgLabel_4")
+        # Text Coordinate
         self.TEXT_2 = QtWidgets.QTextBrowser(Dialog)
-        self.TEXT_2.setGeometry(QtCore.QRect(10, 210, 131, 31))
+        self.TEXT_2.setGeometry(QtCore.QRect(10, 380, 130, 30))
         font = QtGui.QFont()
         font.setPointSize(9)
         self.TEXT_2.setFont(font)
         self.TEXT_2.setObjectName("TEXT_2")
+        # Text Save Log
         self.TEXT_3 = QtWidgets.QTextBrowser(Dialog)
-        self.TEXT_3.setGeometry(QtCore.QRect(10, 270, 101, 31))
+        self.TEXT_3.setGeometry(QtCore.QRect(10, 460, 130, 30))
+        # Text Running / Stop
         self.TEXT_3.setObjectName("TEXT_3")
         self.TEXT_4 = QtWidgets.QTextBrowser(Dialog)
-        self.TEXT_4.setGeometry(QtCore.QRect(10, 310, 101, 31))
+        self.TEXT_4.setGeometry(QtCore.QRect(10, 50, 130, 30))
         self.TEXT_4.setObjectName("TEXT_4")
-        self.TEXT_5 = QtWidgets.QTextBrowser(Dialog)
-        self.TEXT_5.setGeometry(QtCore.QRect(10, 350, 101, 31))
-        self.TEXT_5.setObjectName("TEXT_5")
-        self.TEXT_6 = QtWidgets.QTextBrowser(Dialog)
-        self.TEXT_6.setGeometry(QtCore.QRect(90, 80, 51, 31))
-        self.TEXT_6.setObjectName("TEXT_6")
+        # Label Coordinate
         self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(20, 189, 111, 21))
+        self.label.setGeometry(QtCore.QRect(20, 360, 111, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label.setFont(font)
@@ -113,14 +82,11 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.imgLabel_1.setText(_translate("Dialog", "TextLabel"))
-        self.SHOW.setText(_translate("Dialog", "Show"))
-        self.CAPTURE.setText(_translate("Dialog", "Capture Screen Shot"))
-        self.imgLabel_2.setText(_translate("Dialog", "TextLabel"))
-        self.imgLabel_3.setText(_translate("Dialog", "TextLabel"))
-        self.imgLabel_4.setText(_translate("Dialog", "TextLabel"))
-        self.label.setText(_translate("Dialog", "Center Coordinate"))
+        Dialog.setWindowTitle(_translate("Dialog", "Aplikasi Deteksi Hama"))
+        self.imgLabel_1.setText(_translate("Dialog", "Image"))
+        self.SHOW.setText(_translate("Dialog", "Run"))
+        self.CAPTURE.setText(_translate("Dialog", "Save Log"))
+        self.label.setText(_translate("Dialog", "Object Coordinate"))
 
 
 class MainWindow(QWidget):
@@ -146,11 +112,9 @@ class MainWindow(QWidget):
         self.logic =2
         
     def viewCam(self):
-        self.ui.TEXT.setText('Kindle Press "Capture Image" to capture image')
-        
         # self.cap = cv2.VideoCapture(0)
         # start timer
-        #self.timer.start(20)
+        # self.timer.start(20)
         # read image in BGR format
         ret, image = self.cap.read()
         
@@ -183,13 +147,13 @@ class MainWindow(QWidget):
                     (0, 255, 255), 2)
                 cv2.circle(image, center, 5, (0, 0, 255), -1)
                
-                # Hoang adding code to show center cooordinate
+                # to show object cooordinate
                 x_coordinate = center[0]
                 y_coordinate = center[1]
                 text = f'x: {x_coordinate},  y: {y_coordinate}'
                 if x is not None and y is not None:
                     self.ui.TEXT_2.setText(text)
-                # Hoang adding code to show center cooordinate
+                # to show object cooordinate
         
         
         
@@ -247,25 +211,25 @@ class MainWindow(QWidget):
         height_2, width_2, channel_2 = blurred.shape
         step_2 = channel_2 * width_2
         qImg_2 =  QImage(blurred.data, width_2, height_2, step_2, QImage.Format_RGB888)
-        self.ui.imgLabel_2.setPixmap(QPixmap.fromImage(qImg_2))
+        # self.ui.imgLabel_2.setPixmap(QPixmap.fromImage(qImg_2))
         
         # get image hsv
         height_3, width_3, channel_3 = hsv.shape
         step_3 = channel_3 * width_3
         qImg_3 =  QImage(hsv.data, width_3, height_3, step_3, QImage.Format_RGB888)
-        self.ui.imgLabel_3.setPixmap(QPixmap.fromImage(qImg_3))
+        # self.ui.imgLabel_3.setPixmap(QPixmap.fromImage(qImg_3))
         
         # get image mask
         height_4, width_4= mask.shape
-        step_4 = 3 * width_4                                                      # dont need step -> int bytesPerLine
-        qImg_4 =  QImage(mask.data, width_4, height_4, QImage.Format_Grayscale8)  # link ref https://qt.developpez.com/doc/4.7/qimage/ ; https://doc.qt.io/qt-5/qimage.html
-        self.ui.imgLabel_4.setPixmap(QPixmap.fromImage(qImg_4))
+        step_4 = 3 * width_4 
+        qImg_4 =  QImage(mask.data, width_4, height_4, QImage.Format_Grayscale8)
+        # self.ui.imgLabel_4.setPixmap(QPixmap.fromImage(qImg_4))
     
         if(self.logic==2):   
             self.value = self.value + 1
-            self.ui.TEXT_3.setText("Capture")
+            self.ui.TEXT_3.setText("Saved!")
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            cv2.imwrite('C:/Users/Hoang Image Win/Desktop/1_Image_Processing/1_Image_processing/1_GUI_pyQt5_webcam/hoang.png',image)
+            cv2.imwrite('capture.png',image)
             self.logic=1       
     
     def controlTimer(self):
@@ -276,7 +240,7 @@ class MainWindow(QWidget):
             # start timer
             self.timer.start(20)
             # update control_bt text
-            self.ui.TEXT_6.setText("Running")
+            self.ui.TEXT_4.setText("Running")
         # if timer is started
         else:
             # stop timer
@@ -284,7 +248,7 @@ class MainWindow(QWidget):
             # release video capture
             self.cap.release()
             # update control_bt text
-            self.ui.TEXT_6.setText("Stop")
+            self.ui.TEXT_4.setText("Stop")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
@@ -294,4 +258,3 @@ if __name__ == "__main__":
     mainWindow.show()
 
     sys.exit(app.exec_())
-    
