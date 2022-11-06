@@ -21,6 +21,9 @@ import argparse
 import imutils
 import time
 
+# Import Theme
+import designer
+
 buffer = 32
 
 greenLower = (29, 86, 6)
@@ -33,69 +36,13 @@ direction = ""
 
 time.sleep(2.0)
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        # Window
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(700, 500)
-        # Box Image for Object Preview
-        self.objectPreview = QtWidgets.QLabel(Dialog)
-        self.objectPreview.setGeometry(QtCore.QRect(150, 10, 540, 480))
-        self.objectPreview.setAutoFillBackground(False)
-        self.objectPreview.setFrameShape(QtWidgets.QFrame.Box)
-        self.objectPreview.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.objectPreview.setLineWidth(2)
-        self.objectPreview.setScaledContents(True)
-        self.objectPreview.setObjectName("objectPreview")
-        # Run Button
-        self.runButton = QtWidgets.QPushButton(Dialog)
-        self.runButton.setGeometry(QtCore.QRect(10, 10, 130, 30))
-        self.runButton.setObjectName("runButton")
-        # Text Running / Stop
-        self.runningText = QtWidgets.QTextBrowser(Dialog)
-        self.runningText.setGeometry(QtCore.QRect(10, 50, 130, 30))
-        self.runningText.setObjectName("runningText")
-        # Label Coordinate
-        self.objectCoordinateLabel = QtWidgets.QLabel(Dialog)
-        self.objectCoordinateLabel.setGeometry(QtCore.QRect(20, 360, 111, 21))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.objectCoordinateLabel.setFont(font)
-        self.objectCoordinateLabel.setObjectName("objectCoordinateLabel")
-        # Text Coordinate
-        self.objectCoordinateText = QtWidgets.QTextBrowser(Dialog)
-        self.objectCoordinateText.setGeometry(QtCore.QRect(10, 380, 130, 30))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.objectCoordinateText.setFont(font)
-        self.objectCoordinateText.setObjectName("objectCoordinateText")
-        # Save Log Button
-        self.saveButton = QtWidgets.QPushButton(Dialog)
-        self.saveButton.setGeometry(QtCore.QRect(10, 420, 130, 30))
-        self.saveButton.setObjectName("saveButton")
-        # Text Save Log
-        self.saveText = QtWidgets.QTextBrowser(Dialog)
-        self.saveText.setGeometry(QtCore.QRect(10, 460, 130, 30))
-        self.saveText.setObjectName("saveText")
-
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
-
-    def retranslateUi(self, Dialog):
-        _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Aplikasi Deteksi Hama"))
-        self.objectPreview.setText(_translate("Dialog", "Object Preview"))
-        self.runButton.setText(_translate("Dialog", "Run"))
-        self.saveButton.setText(_translate("Dialog", "Save Log"))
-        self.objectCoordinateLabel.setText(_translate("Dialog", "Object Coordinate"))
-
 
 class MainWindow(QWidget):
     # class constructor
     def __init__(self):
         # call QWidget constructor
         super().__init__()
-        self.ui = Ui_Dialog()
+        self.ui = designer.Ui_Dialog()
         self.ui.setupUi(self)
 
         # create a timer
