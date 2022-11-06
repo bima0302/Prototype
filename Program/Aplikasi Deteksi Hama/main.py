@@ -52,6 +52,9 @@ class MainWindow(QWidget):
         self.ui = main.Ui_Dialog()
         self.ui.setupUi(self)
 
+        # set online webcam
+        # self.onlineCameraList = QCameraInfo.availableCameras()
+        # self.cameraList.addItems([c.description() for c in self.onlineCameraList])
         # create a timer
         self.timer = QTimer()
         # set timer timeout callback function
@@ -175,7 +178,7 @@ class MainWindow(QWidget):
             # create video capture
             self.cap = cv2.VideoCapture(0)
             # start timer
-            self.timer.start(20)
+            self.timer.start()
             # update control_bt text
             self.ui.runButton.setText("Stop")
         # if timer is started

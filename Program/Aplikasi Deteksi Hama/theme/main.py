@@ -22,7 +22,6 @@ class Ui_Dialog(object):
         self.cameraList.setGeometry(QtCore.QRect(10, 20, 131, 24))
         self.cameraList.setObjectName("cameraList")
         self.cameraList.addItem("")
-        self.cameraList.addItem("")
         self.selectCameraButton = QtWidgets.QPushButton(self.dashboardBox)
         self.selectCameraButton.setGeometry(QtCore.QRect(10, 50, 131, 24))
         self.selectCameraButton.setObjectName("selectCameraButton")
@@ -76,8 +75,7 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Aplikasi Deteksi Hama"))
         self.dashboardBox.setTitle(_translate("Dialog", "Dashboard"))
-        self.cameraList.setItemText(0, _translate("Dialog", "Camera 1"))
-        self.cameraList.setItemText(1, _translate("Dialog", "Camera 2"))
+        self.cameraList.setItemText(0, _translate("Dialog", "Select Camera"))
         self.selectCameraButton.setText(_translate("Dialog", "Select Camera"))
         self.runButton.setText(_translate("Dialog", "Run"))
         self.objectPreviewBox.setTitle(_translate("Dialog", "Object Preview"))
