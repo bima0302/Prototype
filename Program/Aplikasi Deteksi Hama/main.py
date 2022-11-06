@@ -56,12 +56,12 @@ class Ui_Dialog(object):
         self.runningText.setGeometry(QtCore.QRect(10, 50, 130, 30))
         self.runningText.setObjectName("runningText")
         # Label Coordinate
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(20, 360, 111, 21))
+        self.objectCoordinateLabel = QtWidgets.QLabel(Dialog)
+        self.objectCoordinateLabel.setGeometry(QtCore.QRect(20, 360, 111, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
+        self.objectCoordinateLabel.setFont(font)
+        self.objectCoordinateLabel.setObjectName("objectCoordinateLabel")
         # Text Coordinate
         self.objectCoordinateText = QtWidgets.QTextBrowser(Dialog)
         self.objectCoordinateText.setGeometry(QtCore.QRect(10, 380, 130, 30))
@@ -87,7 +87,7 @@ class Ui_Dialog(object):
         self.objectPreview.setText(_translate("Dialog", "Object Preview"))
         self.runButton.setText(_translate("Dialog", "Run"))
         self.saveButton.setText(_translate("Dialog", "Save Log"))
-        self.label.setText(_translate("Dialog", "Object Coordinate"))
+        self.objectCoordinateLabel.setText(_translate("Dialog", "Object Coordinate"))
 
 
 class MainWindow(QWidget):
