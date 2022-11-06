@@ -107,9 +107,9 @@ class MainWindow(QWidget):
         
         self.logic = 0
         self.value = 1
-        self.ui.saveButton.clicked.connect(self.CaptureClicked)
+        self.ui.saveButton.clicked.connect(self.saveButtonClicked)
     
-    def CaptureClicked(self):
+    def saveButtonClicked(self):
         self.logic =2
         
     def viewCam(self):
