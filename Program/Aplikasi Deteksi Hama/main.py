@@ -27,7 +27,7 @@ from theme import main
 
 # Import Date for Save Log
 import time
-date_string = time.strftime("%Y-%m-%d-%H:%M")
+date_string = time.strftime("%Y%m%d-%H%M")
 
 # ===========================================================================================
 # Main Code
