@@ -1,6 +1,7 @@
 # Abimanyu Sri Setyo
 # 195150300111005
 
+# Import Library
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QTextEdit, QDialog
 from PyQt5 import uic
 import sys
@@ -25,7 +26,7 @@ import time
 import designer
 
 
-
+# Main Code
 buffer = 32
 
 greenLower = (29, 86, 6)
