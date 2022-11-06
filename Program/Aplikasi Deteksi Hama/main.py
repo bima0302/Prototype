@@ -23,7 +23,7 @@ import imutils
 import time
 
 # Import Theme
-import designer
+from theme import main
 
 
 # ===========================================================================================
@@ -46,7 +46,7 @@ class MainWindow(QWidget):
     def __init__(self):
         # call QWidget constructor
         super().__init__()
-        self.ui = designer.Ui_Dialog()
+        self.ui = main.Ui_Dialog()
         self.ui.setupUi(self)
 
         # create a timer
