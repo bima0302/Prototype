@@ -25,6 +25,9 @@ import time
 # Import Theme
 from theme import main
 
+# Import Date for Save Log
+import time
+date_string = time.strftime("%Y-%m-%d-%H:%M")
 
 # ===========================================================================================
 # Main Code
@@ -163,7 +166,7 @@ class MainWindow(QWidget):
             self.value = self.value + 1
             self.ui.saveText.setText("Saved!")
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            cv2.imwrite('capture.png',image)
+            cv2.imwrite('logs/image-' + date_string + '.png',image)
             self.logic=1       
     
     def controlTimer(self):
