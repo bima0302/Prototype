@@ -32,7 +32,7 @@ date_string = time.strftime("%Y%m%d-%H%M")
 # ===========================================================================================
 # Main Code
 buffer = 32
-
+# Set HSV value for object to be detected
 greenLower = (29, 86, 6)
 greenUpper = (64, 255, 255)
 
