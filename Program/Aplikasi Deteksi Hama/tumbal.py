@@ -33,81 +33,23 @@ direction = ""
 
 time.sleep(2.0)
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        # Window
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(700, 500)
-        # Box Image for Object Preview
-        self.objectPreview = QtWidgets.QLabel(Dialog)
-        self.objectPreview.setGeometry(QtCore.QRect(150, 10, 540, 480))
-        self.objectPreview.setAutoFillBackground(False)
-        self.objectPreview.setFrameShape(QtWidgets.QFrame.Box)
-        self.objectPreview.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.objectPreview.setLineWidth(2)
-        self.objectPreview.setScaledContents(True)
-        self.objectPreview.setObjectName("objectPreview")
-        # Run Button
-        self.runButton = QtWidgets.QPushButton(Dialog)
-        self.runButton.setGeometry(QtCore.QRect(10, 10, 130, 30))
-        self.runButton.setObjectName("runButton")
-        # Text Running / Stop
-        self.runningText = QtWidgets.QTextBrowser(Dialog)
-        self.runningText.setGeometry(QtCore.QRect(10, 50, 130, 30))
-        self.runningText.setObjectName("runningText")
-        # Label Coordinate
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(20, 360, 111, 21))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
-        # Text Coordinate
-        self.objectCoordinateText = QtWidgets.QTextBrowser(Dialog)
-        self.objectCoordinateText.setGeometry(QtCore.QRect(10, 380, 130, 30))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.objectCoordinateText.setFont(font)
-        self.objectCoordinateText.setObjectName("objectCoordinateText")
-        # Save Log Button
-        self.saveButton = QtWidgets.QPushButton(Dialog)
-        self.saveButton.setGeometry(QtCore.QRect(10, 420, 130, 30))
-        self.saveButton.setObjectName("saveButton")
-        # Text Save Log
-        self.saveText = QtWidgets.QTextBrowser(Dialog)
-        self.saveText.setGeometry(QtCore.QRect(10, 460, 130, 30))
-        self.saveText.setObjectName("saveText")
-
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
-
-    def retranslateUi(self, Dialog):
-        _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Aplikasi Deteksi Hama"))
-        self.objectPreview.setText(_translate("Dialog", "Object Preview"))
-        self.runButton.setText(_translate("Dialog", "Run"))
-        self.saveButton.setText(_translate("Dialog", "Save Log"))
-        self.label.setText(_translate("Dialog", "Object Coordinate"))
-
-
 class MainWindow(QWidget):
     # class constructor
     def __init__(self):
         # call QWidget constructor
         super().__init__()
-        self.ui = Ui_Dialog()
-        self.ui.setupUi(self)
+        self.ui = uic.loadUi("main.ui",self)
 
         # create a timer
         self.timer = QTimer()
         # set timer timeout callback function
         self.timer.timeout.connect(self.viewCam)
         
-        self.ui.runButton.clicked.connect(self.controlTimer)
+        self.ui.pushButton_2.clicked.connect(self.controlTimer)
         
         self.logic = 0
         self.value = 1
-        self.ui.saveButton.clicked.connect(self.CaptureClicked)
+        self.ui.pushButton_3.clicked.connect(self.CaptureClicked)
     
     def CaptureClicked(self):
         self.logic =2
@@ -153,7 +95,7 @@ class MainWindow(QWidget):
                 y_coordinate = center[1]
                 text = f'x: {x_coordinate},  y: {y_coordinate}'
                 if x is not None and y is not None:
-                    self.ui.objectCoordinateText.setText(text)
+                    self.ui.TEXT_2.setText(text)
                 # to show object cooordinate
         
         
@@ -206,11 +148,29 @@ class MainWindow(QWidget):
         # create QImage from image
         qImg = QImage(image.data, width, height, step, QImage.Format_RGB888)
         # show image in img_label
-        self.ui.objectPreview.setPixmap(QPixmap.fromImage(qImg))
+        self.ui.imgLabel_1.setPixmap(QPixmap.fromImage(qImg))
         
+        # get image blurred
+        height_2, width_2, channel_2 = blurred.shape
+        step_2 = channel_2 * width_2
+        qImg_2 =  QImage(blurred.data, width_2, height_2, step_2, QImage.Format_RGB888)
+        # self.ui.imgLabel_2.setPixmap(QPixmap.fromImage(qImg_2))
+        
+        # get image hsv
+        height_3, width_3, channel_3 = hsv.shape
+        step_3 = channel_3 * width_3
+        qImg_3 =  QImage(hsv.data, width_3, height_3, step_3, QImage.Format_RGB888)
+        # self.ui.imgLabel_3.setPixmap(QPixmap.fromImage(qImg_3))
+        
+        # get image mask
+        height_4, width_4= mask.shape
+        step_4 = 3 * width_4 
+        qImg_4 =  QImage(mask.data, width_4, height_4, QImage.Format_Grayscale8)
+        # self.ui.imgLabel_4.setPixmap(QPixmap.fromImage(qImg_4))
+    
         if(self.logic==2):   
             self.value = self.value + 1
-            self.ui.saveText.setText("Saved!")
+            self.ui.TEXT_3.setText("Saved!")
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             cv2.imwrite('capture.png',image)
             self.logic=1       
@@ -223,7 +183,7 @@ class MainWindow(QWidget):
             # start timer
             self.timer.start(20)
             # update control_bt text
-            self.ui.runningText.setText("Running")
+            self.ui.TEXT_4.setText("Running")
         # if timer is started
         else:
             # stop timer
@@ -231,7 +191,7 @@ class MainWindow(QWidget):
             # release video capture
             self.cap.release()
             # update control_bt text
-            self.ui.runningText.setText("Stop")
+            self.ui.TEXT_4.setText("Stop")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
