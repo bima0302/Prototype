@@ -53,6 +53,7 @@ class MainWindow(QWidget):
         self.ui.setupUi(self)
 
         # set online webcam
+        # BELOM JADIII
         # self.onlineCameraList = QCameraInfo.availableCameras()
         # self.cameraList.addItems([c.description() for c in self.onlineCameraList])
         # create a timer
