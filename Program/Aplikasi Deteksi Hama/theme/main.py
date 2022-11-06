@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main.ui'
+# Form implementation generated from reading ui file 'theme/main.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -19,25 +19,25 @@ class Ui_Dialog(object):
         self.dashboardBox.setGeometry(QtCore.QRect(10, 10, 151, 481))
         self.dashboardBox.setObjectName("dashboardBox")
         self.cameraList = QtWidgets.QComboBox(self.dashboardBox)
-        self.cameraList.setGeometry(QtCore.QRect(10, 20, 131, 22))
+        self.cameraList.setGeometry(QtCore.QRect(10, 20, 131, 24))
         self.cameraList.setObjectName("cameraList")
         self.cameraList.addItem("")
         self.cameraList.addItem("")
         self.selectCameraButton = QtWidgets.QPushButton(self.dashboardBox)
-        self.selectCameraButton.setGeometry(QtCore.QRect(10, 50, 131, 23))
+        self.selectCameraButton.setGeometry(QtCore.QRect(10, 50, 131, 24))
         self.selectCameraButton.setObjectName("selectCameraButton")
         self.runButton = QtWidgets.QPushButton(self.dashboardBox)
-        self.runButton.setGeometry(QtCore.QRect(10, 80, 131, 23))
+        self.runButton.setGeometry(QtCore.QRect(10, 80, 131, 24))
         self.runButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.runButton.setObjectName("runButton")
         self.saveButton = QtWidgets.QPushButton(self.dashboardBox)
-        self.saveButton.setGeometry(QtCore.QRect(10, 450, 131, 23))
+        self.saveButton.setGeometry(QtCore.QRect(10, 450, 131, 24))
         self.saveButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.saveButton.setObjectName("saveButton")
         self.objectCoordinateText = QtWidgets.QTextBrowser(self.dashboardBox)
-        self.objectCoordinateText.setGeometry(QtCore.QRect(10, 420, 131, 21))
+        self.objectCoordinateText.setGeometry(QtCore.QRect(10, 420, 131, 24))
         font = QtGui.QFont()
-        font.setPointSize(7)
+        font.setPointSize(9)
         self.objectCoordinateText.setFont(font)
         self.objectCoordinateText.setObjectName("objectCoordinateText")
         self.objectCoordinateLabel = QtWidgets.QLabel(self.dashboardBox)
@@ -45,9 +45,9 @@ class Ui_Dialog(object):
         self.objectCoordinateLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.objectCoordinateLabel.setObjectName("objectCoordinateLabel")
         self.runningText = QtWidgets.QTextBrowser(self.dashboardBox)
-        self.runningText.setGeometry(QtCore.QRect(10, 110, 131, 21))
+        self.runningText.setGeometry(QtCore.QRect(10, 110, 131, 24))
         font = QtGui.QFont()
-        font.setPointSize(7)
+        font.setPointSize(9)
         self.runningText.setFont(font)
         self.runningText.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.runningText.setObjectName("runningText")

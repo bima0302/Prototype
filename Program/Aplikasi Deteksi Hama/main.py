@@ -174,7 +174,7 @@ class MainWindow(QWidget):
             # start timer
             self.timer.start(20)
             # update control_bt text
-            self.ui.runningText.setText("Running")
+            self.ui.runningText.setText("Running!")
         # if timer is started
         else:
             # stop timer
@@ -182,7 +182,7 @@ class MainWindow(QWidget):
             # release video capture
             self.cap.release()
             # update control_bt text
-            self.ui.runningText.setText("Stop")
+            self.ui.runningText.setText("Stopped!")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
