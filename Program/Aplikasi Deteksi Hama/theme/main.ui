@@ -36,7 +36,7 @@
     </property>
     <item>
      <property name="text">
-      <string>Select Camera</string>
+      <string>Camera 1</string>
      </property>
     </item>
    </widget>

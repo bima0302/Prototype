@@ -75,7 +75,7 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Aplikasi Deteksi Hama"))
         self.dashboardBox.setTitle(_translate("Dialog", "Dashboard"))
-        self.cameraList.setItemText(0, _translate("Dialog", "Select Camera"))
+        self.cameraList.setItemText(0, _translate("Dialog", "Camera 1"))
         self.selectCameraButton.setText(_translate("Dialog", "Select Camera"))
         self.runButton.setText(_translate("Dialog", "Run"))
         self.objectPreviewBox.setTitle(_translate("Dialog", "Object Preview"))
