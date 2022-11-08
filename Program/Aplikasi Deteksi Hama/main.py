@@ -33,8 +33,8 @@ date_string = time.strftime("%Y%m%d-%H%M")
 # Main Code
 buffer = 32
 # Set HSV value for object to be detected
-greenLower = (29, 86, 6)
-greenUpper = (64, 255, 255)
+colorLower = (29, 86, 6)
+colorUpper = (64, 255, 255)
 
 pts = deque(maxlen=buffer)
 counter = 0
@@ -52,8 +52,8 @@ class MainWindow(QWidget):
         self.ui = main.Ui_Dialog()
         self.ui.setupUi(self)
 
-        # set online webcam
-        # BELOM JADIII
+        # set online webcam list for choose camera
+        #### BELOM JADIII
         # self.onlineCameraList = QCameraInfo.availableCameras()
         # self.cameraList.addItems([c.description() for c in self.onlineCameraList])
         # create a timer
@@ -82,7 +82,7 @@ class MainWindow(QWidget):
         blurred = cv2.GaussianBlur(image, (11, 11), 0)
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
         
-        mask = cv2.inRange(hsv, greenLower, greenUpper)
+        mask = cv2.inRange(hsv, colorLower, colorUpper)
         mask = cv2.erode(mask, None, iterations=2)
         mask = cv2.dilate(mask, None, iterations=2)
         
