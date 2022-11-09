@@ -94,7 +94,7 @@ class MainWindow(QWidget):
             if rect[2] < 100 or rect[3] < 100: continue
             print(cv2.contourArea(c))
             x,y,w,h = rect
-            # draw the rectangle and centroid on the frame,
+            # draw the rectangle on the frame,
             # then update the list of tracked points
             cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
             # put text on the rectangle frame
