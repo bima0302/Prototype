@@ -108,6 +108,7 @@ class MainWindow(QWidget):
         # show image in img_label
         self.ui.objectPreview.setPixmap(QPixmap.fromImage(qImg))
         
+        # save log to .png file
         if(self.logic==2):   
             self.value = self.value + 1
             self.ui.saveButton.setText("Saved!")
