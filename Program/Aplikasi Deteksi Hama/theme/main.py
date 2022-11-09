@@ -64,5 +64,5 @@ class Ui_Dialog(object):
         self.runButton.setText(_translate("Dialog", "Run"))
         self.objectPreviewBox.setTitle(_translate("Dialog", "Object Preview"))
         self.objectPreview.setText(_translate("Dialog", "Object Preview"))
-        self.groupBox_2.setTitle(_translate("Dialog", "Log"))
+        self.groupBox_2.setTitle(_translate("Dialog", "Logs"))
         self.saveButton.setText(_translate("Dialog", "Save Log"))

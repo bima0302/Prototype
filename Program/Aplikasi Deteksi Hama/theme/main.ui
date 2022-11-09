@@ -124,7 +124,7 @@
     </rect>
    </property>
    <property name="title">
-    <string>Log</string>
+    <string>Logs</string>
    </property>
    <widget class="QPushButton" name="saveButton">
     <property name="geometry">

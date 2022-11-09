@@ -14,7 +14,6 @@ from PyQt5.QtGui import QImage
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QTimer
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.uic import loadUi
 
 from collections import deque
 from imutils.video import VideoStream
@@ -45,16 +44,16 @@ direction = ""
 time.sleep(2.0)
 
 
-class MainWindow(QDialog):
+class MainWindow(QWidget):
     # class constructor
     def __init__(self):
         # call QWidget constructor
-        super(MainWindow, self).__init__()
-        # self.= main.Ui_Dialog()
-        loadUi('theme\main.ui')
+        super().__init__()
+        self.ui = main.Ui_Dialog()
+        self.ui.setupUi(self)
 
         # set online webcam list for choose camera
-        #### BELOM JADIII
+        #### BELOM JADIII ####
         # self.onlineCameraList = QCameraInfo.availableCameras()
         # self.cameraList.addItems([c.description() for c in self.onlineCameraList])
         # create a timer
@@ -62,11 +61,11 @@ class MainWindow(QDialog):
         # set timer timeout callback function
         self.timer.timeout.connect(self.viewCam)
         
-        self.runButton.clicked.connect(self.runButtonClicked)
+        self.ui.runButton.clicked.connect(self.runButtonClicked)
         
         self.logic = 0
         self.value = 1
-        self.saveButton.clicked.connect(self.saveButtonClicked)
+        self.ui.saveButton.clicked.connect(self.saveButtonClicked)
     
     def saveButtonClicked(self):
         self.logic =2
@@ -90,20 +89,16 @@ class MainWindow(QDialog):
         
         
         # only proceed if at least one contour was found
-        if len(cnts) > 0:
-            c = max(cnts, key=cv2.contourArea) 
-            ((x, y), radius) = cv2.minEnclosingCircle(c)
-            M = cv2.moments(c)
-            center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
-
-            # only proceed if the radius meets a minimum size
-            if radius > 10:
-                # draw the circle and centroid on the frame,
-                # then update the list of tracked points
-                cv2.circle(image, (int(x), int(y)), int(radius),
-                    (0, 255, 255), 2)
-                cv2.circle(image, center, 5, (0, 0, 255), -1)
-               
+        for c in cnts:
+            rect = cv2.boundingRect(c)
+            if rect[2] < 100 or rect[3] < 100: continue
+            print(cv2.contourArea(c))
+            x,y,w,h = rect
+            # draw the rectangle and centroid on the frame,
+            # then update the list of tracked points
+            cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
+            # put text on the rectangle frame
+            cv2.putText(image,'Disease Detected',(x+w+10,y+h),0,0.3,(0,255,0))    
         
         # convert image to RGB format 
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -113,11 +108,11 @@ class MainWindow(QDialog):
         # create QImage from image
         qImg = QImage(image.data, width, height, step, QImage.Format_RGB888)
         # show image in img_label
-        self.objectPreview.setPixmap(QPixmap.fromImage(qImg))
+        self.ui.objectPreview.setPixmap(QPixmap.fromImage(qImg))
         
         if(self.logic==2):   
             self.value = self.value + 1
-            self.saveButton.setText("Saved!")
+            self.ui.saveButton.setText("Saved!")
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             cv2.imwrite('logs/image-' + date_string + '.png',image)
             self.logic=1       
@@ -130,7 +125,7 @@ class MainWindow(QDialog):
             # start timer
             self.timer.start()
             # update control_bt text
-            self.runButton.setText("Stop")
+            self.ui.runButton.setText("Stop")
         # if timer is started
         else:
             # stop timer
@@ -138,7 +133,7 @@ class MainWindow(QDialog):
             # release video capture
             self.cap.release()
             # update control_bt text
-            self.runButton.setText("Run")
+            self.ui.runButton.setText("Run")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
