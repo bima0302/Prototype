@@ -87,7 +87,7 @@ class MainWindow(QWidget):
         cnts = imutils.grab_contours(cnts)
         center = None
         
-        
+        # create bounding box frame
         # only proceed if at least one contour was found
         for c in cnts:
             rect = cv2.boundingRect(c)
