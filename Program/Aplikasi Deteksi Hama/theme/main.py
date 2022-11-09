@@ -41,31 +41,15 @@ class Ui_Dialog(object):
         self.objectPreview.setScaledContents(True)
         self.objectPreview.setAlignment(QtCore.Qt.AlignCenter)
         self.objectPreview.setObjectName("objectPreview")
-        self.groupBox = QtWidgets.QGroupBox(Dialog)
-        self.groupBox.setGeometry(QtCore.QRect(10, 330, 151, 61))
-        self.groupBox.setObjectName("groupBox")
-        self.objectCoordinateText = QtWidgets.QTextBrowser(self.groupBox)
-        self.objectCoordinateText.setGeometry(QtCore.QRect(10, 20, 131, 24))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.objectCoordinateText.setFont(font)
-        self.objectCoordinateText.setObjectName("objectCoordinateText")
         self.groupBox_2 = QtWidgets.QGroupBox(Dialog)
-        self.groupBox_2.setGeometry(QtCore.QRect(9, 399, 151, 91))
+        self.groupBox_2.setGeometry(QtCore.QRect(9, 439, 151, 51))
         self.groupBox_2.setObjectName("groupBox_2")
-        self.saveText = QtWidgets.QTextBrowser(self.groupBox_2)
-        self.saveText.setGeometry(QtCore.QRect(10, 50, 131, 24))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.saveText.setFont(font)
-        self.saveText.setObjectName("saveText")
         self.saveButton = QtWidgets.QPushButton(self.groupBox_2)
         self.saveButton.setGeometry(QtCore.QRect(10, 20, 131, 24))
         self.saveButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.saveButton.setObjectName("saveButton")
         self.objectPreviewBox.raise_()
         self.dashboardBox.raise_()
-        self.groupBox.raise_()
         self.groupBox_2.raise_()
 
         self.retranslateUi(Dialog)
@@ -80,16 +64,5 @@ class Ui_Dialog(object):
         self.runButton.setText(_translate("Dialog", "Run"))
         self.objectPreviewBox.setTitle(_translate("Dialog", "Object Preview"))
         self.objectPreview.setText(_translate("Dialog", "Object Preview"))
-        self.groupBox.setTitle(_translate("Dialog", "Object Coordinate"))
-        self.objectCoordinateText.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.groupBox_2.setTitle(_translate("Dialog", "Save Log"))
-        self.saveText.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.groupBox_2.setTitle(_translate("Dialog", "Log"))
         self.saveButton.setText(_translate("Dialog", "Save Log"))

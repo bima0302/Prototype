@@ -61,7 +61,7 @@ class MainWindow(QWidget):
         # set timer timeout callback function
         self.timer.timeout.connect(self.viewCam)
         
-        self.ui.runButton.clicked.connect(self.controlTimer)
+        self.ui.runButton.clicked.connect(self.dashboard)
         
         self.logic = 0
         self.value = 1
@@ -71,9 +71,6 @@ class MainWindow(QWidget):
         self.logic =2
         
     def viewCam(self):
-        # self.cap = cv2.VideoCapture(0)
-        # start timer
-        # self.timer.start(20)
         # read image in BGR format
         ret, image = self.cap.read()
         
@@ -106,55 +103,6 @@ class MainWindow(QWidget):
                     (0, 255, 255), 2)
                 cv2.circle(image, center, 5, (0, 0, 255), -1)
                
-                # to show object cooordinate
-                x_coordinate = center[0]
-                y_coordinate = center[1]
-                text = f'x: {x_coordinate},  y: {y_coordinate}'
-                if x is not None and y is not None:
-                    self.ui.objectCoordinateText.setText(text)
-                # to show object cooordinate
-        
-        
-        
-            # loop over the set of tracked points
-        for i in np.arange(1, len(pts)):
-            # if either of the tracked points are None, ignore
-            # them
-            if pts[i - 1] is None or pts[i] is None:
-                continue
-
-            # check to see if enough points have been accumulated in
-            # the buffer
-            if counter >= 10 and i == 1 and pts[-10] is not None:
-                # compute the difference between the x and y
-                # coordinates and re-initialize the direction
-                # text variables
-                dX = pts[-10][0] - pts[i][0]
-                dY = pts[-10][1] - pts[i][1]
-                (dirX, dirY) = ("", "")
-
-                # ensure there is significant movement in the
-                # x-direction
-                if np.abs(dX) > 20:
-                    dirX = "East" if np.sign(dX) == 1 else "West"
-
-                # ensure there is significant movement in the
-                # y-direction
-                if np.abs(dY) > 20:
-                    dirY = "North" if np.sign(dY) == 1 else "South"
-
-                # handle when both directions are non-empty
-                if dirX != "" and dirY != "":
-                    direction = "{}-{}".format(dirY, dirX)
-
-                # otherwise, only one direction is non-empty
-                else:
-                    direction = dirX if dirX != "" else dirY
-
-            # otherwise, compute the thickness of the line and
-            # draw the connecting lines
-            thickness = int(np.sqrt(buffer/ float(i + 1)) * 2.5)
-            cv2.line(image, pts[i - 1], pts[i], (0, 0, 255), thickness)
         
         # convert image to RGB format 
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -168,12 +116,12 @@ class MainWindow(QWidget):
         
         if(self.logic==2):   
             self.value = self.value + 1
-            self.ui.saveText.setText("Saved!")
+            self.ui.saveButton.setText("Saved!")
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             cv2.imwrite('logs/image-' + date_string + '.png',image)
             self.logic=1       
     
-    def controlTimer(self):
+    def dashboard(self):
         # if timer is stopped
         if not self.timer.isActive():
             # create video capture
