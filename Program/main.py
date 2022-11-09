@@ -73,7 +73,7 @@ class MainWindow(QWidget):
     def viewCam(self):
         # read image in BGR format
         ret, image = self.cap.read()
-        
+
         # convert image to RGB format
         image = imutils.resize(image, width=600)
         blurred = cv2.GaussianBlur(image, (11, 11), 0)
@@ -88,14 +88,12 @@ class MainWindow(QWidget):
         center = None
         
         # create bounding box frame
-        # only proceed if at least one contour was found
         for c in cnts:
             rect = cv2.boundingRect(c)
             if rect[2] < 100 or rect[3] < 100: continue
             print(cv2.contourArea(c))
             x,y,w,h = rect
-            # draw the rectangle on the frame,
-            # then update the list of tracked points
+            # draw the rectangle on the frame
             cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
             # put text on the rectangle frame
             cv2.putText(image,'Disease Detected',(x+w+10,y+h),0,0.3,(0,255,0))    
