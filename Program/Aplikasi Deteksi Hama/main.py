@@ -61,7 +61,7 @@ class MainWindow(QWidget):
         # set timer timeout callback function
         self.timer.timeout.connect(self.viewCam)
         
-        self.ui.runButton.clicked.connect(self.dashboard)
+        self.ui.runButton.clicked.connect(self.runButtonClicked)
         
         self.logic = 0
         self.value = 1
@@ -121,7 +121,7 @@ class MainWindow(QWidget):
             cv2.imwrite('logs/image-' + date_string + '.png',image)
             self.logic=1       
     
-    def dashboard(self):
+    def runButtonClicked(self):
         # if timer is stopped
         if not self.timer.isActive():
             # create video capture
