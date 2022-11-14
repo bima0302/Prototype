@@ -59,7 +59,7 @@ class MainWindow(QDialog):
         # if timer is stopped
         if not self.timer.isActive():
             # create video capture
-            self.cap = cv2.VideoCapture(0)
+            self.cap = cv2.VideoCapture(1)
             # start timer
             self.timer.start()
             # update control_bt text
