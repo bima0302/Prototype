@@ -43,11 +43,8 @@ class MainWindow(QDialog):
         # call QDialog constructor
         super(MainWindow, self).__init__()
         loadUi('main.ui', self)
+        self.logic = 0
 
-        # set online webcam list for choose camera
-        #### BELOM JADIII ####
-        self.onlineCameraList = QCameraInfo.availableCameras()
-        self.cameraList.addItems([c.description() for c in self.onlineCameraList])
         # create a timer
         self.timer = QTimer()
         # set timer timeout callback function
@@ -55,12 +52,32 @@ class MainWindow(QDialog):
         
         self.runButton.clicked.connect(self.runButtonClicked)
         
-        self.logic = 0
-        self.value = 1
         self.saveButton.clicked.connect(self.saveButtonClicked)
-    
+
+        self.quitButton.clicked.connect(self.quitButtonClicked)
+
+
+    def runButtonClicked(self):
+        self.value = 1
+        # if timer is stopped
+        if not self.timer.isActive():
+            # create video capture
+            self.cap = cv2.VideoCapture(0)
+            # start timer
+            self.timer.start()
+            # update control_bt text
+            self.runButton.setText("Stop")
+        # if timer is started
+        else:
+            # stop timer
+            self.timer.stop()
+            # release video capture
+            self.cap.release()
+            # update control_bt text
+            self.runButton.setText("Run")
+        
     def saveButtonClicked(self):
-        self.logic =2
+        self.logic = 2
         
     def viewCam(self):
         # read image in BGR format
@@ -107,25 +124,10 @@ class MainWindow(QDialog):
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             cv2.imwrite('logs/image-' + date_string + '.png',image)
             self.logic=1       
-    
-    def runButtonClicked(self):
-        # if timer is stopped
-        if not self.timer.isActive():
-            # create video capture
-            self.cap = cv2.VideoCapture(0)
-            # start timer
-            self.timer.start()
-            # update control_bt text
-            self.runButton.setText("Stop")
-        # if timer is started
-        else:
-            # stop timer
-            self.timer.stop()
-            # release video capture
-            self.cap.release()
-            # update control_bt text
-            self.runButton.setText("Run")
-        
+
+    def quitButtonClicked(self):
+        self.close()
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
