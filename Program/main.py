@@ -9,14 +9,11 @@ import imutils
 import numpy as np
 import argparse
 
-from PyQt5.QtMultimedia import QCameraInfo
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QImage, QPixmap 
 from PyQt5.QtWidgets import QDialog, QApplication, QLabel, QWidget
 from PyQt5.uic import loadUi
 from collections import deque
-
-from PyQt5.QtCore import QTimer
 
 # Import Date for Save Log
 import time
