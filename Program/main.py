@@ -2,28 +2,21 @@
 # 195150300111005
 
 # Import Library
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QTextEdit, QDialog
-from PyQt5 import uic
-import sys
 import cv2
-
-from PyQt5.QtMultimedia import QCameraInfo
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtWidgets import QWidget
-from PyQt5.QtGui import QImage
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import QTimer
-from PyQt5 import QtCore, QtGui, QtWidgets
-
-from collections import deque
-from imutils.video import VideoStream
+import sys
+import time
+import imutils
 import numpy as np
 import argparse
-import imutils
-import time
 
-# Import Theme
-from theme import main
+from PyQt5.QtMultimedia import QCameraInfo
+from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtGui import QImage, QPixmap 
+from PyQt5.QtWidgets import QDialog, QApplication, QLabel, QWidget
+from PyQt5.uic import loadUi
+from collections import deque
+
+from PyQt5.QtCore import QTimer
 
 # Import Date for Save Log
 import time
@@ -44,28 +37,27 @@ direction = ""
 time.sleep(2.0)
 
 
-class MainWindow(QWidget):
+class MainWindow(QDialog):
     # class constructor
     def __init__(self):
-        # call QWidget constructor
-        super().__init__()
-        self.ui = main.Ui_Dialog()
-        self.ui.setupUi(self)
+        # call QDialog constructor
+        super(MainWindow, self).__init__()
+        loadUi('main.ui', self)
 
         # set online webcam list for choose camera
         #### BELOM JADIII ####
-        # self.onlineCameraList = QCameraInfo.availableCameras()
-        # self.cameraList.addItems([c.description() for c in self.onlineCameraList])
+        self.onlineCameraList = QCameraInfo.availableCameras()
+        self.cameraList.addItems([c.description() for c in self.onlineCameraList])
         # create a timer
         self.timer = QTimer()
         # set timer timeout callback function
         self.timer.timeout.connect(self.viewCam)
         
-        self.ui.runButton.clicked.connect(self.runButtonClicked)
+        self.runButton.clicked.connect(self.runButtonClicked)
         
         self.logic = 0
         self.value = 1
-        self.ui.saveButton.clicked.connect(self.saveButtonClicked)
+        self.saveButton.clicked.connect(self.saveButtonClicked)
     
     def saveButtonClicked(self):
         self.logic =2
@@ -106,12 +98,12 @@ class MainWindow(QWidget):
         # create QImage from image
         qImg = QImage(image.data, width, height, step, QImage.Format_RGB888)
         # show image in img_label
-        self.ui.objectPreview.setPixmap(QPixmap.fromImage(qImg))
+        self.objectPreview.setPixmap(QPixmap.fromImage(qImg))
         
         # save log to .png file
         if(self.logic==2):   
             self.value = self.value + 1
-            self.ui.saveButton.setText("Saved!")
+            self.saveButton.setText("Saved!")
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             cv2.imwrite('logs/image-' + date_string + '.png',image)
             self.logic=1       
@@ -124,7 +116,7 @@ class MainWindow(QWidget):
             # start timer
             self.timer.start()
             # update control_bt text
-            self.ui.runButton.setText("Stop")
+            self.runButton.setText("Stop")
         # if timer is started
         else:
             # stop timer
@@ -132,7 +124,7 @@ class MainWindow(QWidget):
             # release video capture
             self.cap.release()
             # update control_bt text
-            self.ui.runButton.setText("Run")
+            self.runButton.setText("Run")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
