@@ -23,8 +23,8 @@ date_string = time.strftime("%Y%m%d-%H%M")
 # Main Code
 buffer = 32
 # Set HSV value for object to be detected
-colorLower = (10, 0, 0)
-colorUpper = (30, 255, 100)
+colorLower = (10, 100, 20)
+colorUpper = (20, 255, 200)
 
 pts = deque(maxlen=buffer)
 counter = 0
@@ -81,8 +81,13 @@ class MainWindow(QDialog):
         ret, image = self.cap.read()
 
         # convert image to RGB format
-        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        image = imutils.resize(image, width=600)
+        blurred = cv2.GaussianBlur(image, (11, 11), 0)
+        hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
+        
         mask = cv2.inRange(hsv, colorLower, colorUpper)
+        mask = cv2.erode(mask, None, iterations=2)
+        mask = cv2.dilate(mask, None, iterations=2)
         
         cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
         cnts = imutils.grab_contours(cnts)
@@ -91,16 +96,13 @@ class MainWindow(QDialog):
         # create bounding box frame
         for c in cnts:
             rect = cv2.boundingRect(c)
-            # many box in same area
-            if rect[2] < 10 or rect[3] < 10: continue
+            if rect[2] < 100 or rect[3] < 100: continue
             print(cv2.contourArea(c))
             x,y,w,h = rect
             # draw the rectangle on the frame
-            # argument is cv2.rectangle(image,starting_point,ending_point,color,thickness)
-            cv2.rectangle(image,(x,y),(x+w,y+h),(255,255,255),2)
+            cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
             # put text on the rectangle frame
-            # argument is cv2.putText(image,text,org,font,fontScale,color,thickness)    
-            cv2.putText(image,'Disease Detected',(x+w+10,y+h),0,0.5,(255,255,255),2)    
+            cv2.putText(image,'Disease Detected',(x+w+10,y+h),0,0.3,(0,255,0))    
         
         # convert image to RGB format 
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
