@@ -93,7 +93,6 @@ class MainWindow(QDialog):
             rect = cv2.boundingRect(c)
             # many box in same area
             if rect[2] < 10 or rect[3] < 10: continue
-            print(cv2.contourArea(c))
             x,y,w,h = rect
             # draw the rectangle on the frame
             # argument is cv2.rectangle(image,starting_point,ending_point,color,thickness)
