@@ -3,7 +3,7 @@ import cv2
 import imutils
 
 # from image
-img = cv2.imread('SL2.jpg', cv2.IMREAD_COLOR)
+img = cv2.imread('SL6.jpg', cv2.IMREAD_COLOR)
 
 # ================================================= #
 ## main code
