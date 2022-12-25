@@ -23,8 +23,8 @@ date_string = time.strftime("%Y%m%d-%H%M")
 # Main Code
 buffer = 32
 # Set HSV value for object to be detected
-colorLower = (0, 100, 30)
-colorUpper = (31, 180, 80)
+colorLower = (10, 0, 0)
+colorUpper = (30, 255, 100)
 
 pts = deque(maxlen=buffer)
 counter = 0
@@ -59,7 +59,7 @@ class MainWindow(QDialog):
         # if timer is stopped
         if not self.timer.isActive():
             # create video capture
-            self.cap = cv2.VideoCapture(1)
+            self.cap = cv2.imread('dataset/normal/nm_9.jpg')
             # start timer
             self.timer.start()
             # update control_bt text
