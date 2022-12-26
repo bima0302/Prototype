@@ -10,8 +10,8 @@ img = cv2.imread('dataset/tipburn/pengujian/tb_1.jpg', cv2.IMREAD_COLOR)
 ## main code
 imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-batas_bawah = (0, 80, 30)
-batas_atas = (100, 180, 100)
+batas_bawah = (0, 0, 0)
+batas_atas = (30, 255, 127)
 mask = cv2.inRange(imgHSV, batas_bawah, batas_atas)
 
 cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
@@ -29,8 +29,8 @@ cv2.imshow('img', img)
 cv2.imshow("HSV mask", mask)
 
 # save
-cv2.imwrite('dataset/perancangan/bug2/tb.jpg', img)
-cv2.imwrite('dataset/perancangan/bug2/tb_mask.jpg', mask)
+# cv2.imwrite('dataset/perancangan/bug2/tb.jpg', img)
+# cv2.imwrite('dataset/perancangan/bug2/tb_mask.jpg', mask)
 
 
 cv2.waitKey(0)
