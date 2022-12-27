@@ -11,7 +11,7 @@ img = cv2.imread('dataset/tipburn/pengujian/tb_1.jpg', cv2.IMREAD_COLOR)
 imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
 batas_bawah = (0, 0, 0)
-batas_atas = (30, 255, 127)
+batas_atas = (25, 255, 127)
 mask = cv2.inRange(imgHSV, batas_bawah, batas_atas)
 
 cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)

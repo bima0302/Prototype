@@ -24,7 +24,7 @@ date_string = time.strftime("%Y%m%d-%H%M")
 buffer = 32
 # Set HSV value for object to be detected
 colorLower = (0, 0, 0)
-colorUpper = (30, 255, 127)
+colorUpper = (25, 255, 127)
 
 pts = deque(maxlen=buffer)
 counter = 0
